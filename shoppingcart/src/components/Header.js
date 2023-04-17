@@ -1,8 +1,12 @@
 import '../App.css';
 //import Axios from 'axios';
 import {useEffect, useState} from 'react';
+import "./Header.css";
+import { Link } from 'react-router-dom';
+//let Link= require("react-router-dom");
 
 function Header(props) {
+  
     /*Axios({
         method: "GET",
         url: "http://localhost:3000",
@@ -21,11 +25,24 @@ function Header(props) {
   
     return (
         <div className='flex shopping-card'>
-            <div onClick={() => props.handleShow(false)} >Shopping Cart App</div>
-            <div onClick={() => props.handleShow(true)}> Cart
-                <sup> {props.count} </sup>
-            </div>
+            <div onClick={() => props.handleShow(false)} >India-Mart-Online-shopping</div>
+            <div className='header-links'>
+           <ul>
+              <li>
+                <Link to ="/signup">Signup</Link>
+                
+               
+              </li> 
+           </ul>
+           <button onClick={() => props.handleShow(true)}>Cart
+           <sup> {props.count} </sup>
+           </button>
+           
         </div>
+           
+           
+        </div>
+        
     );
 }
 

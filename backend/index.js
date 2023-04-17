@@ -3,6 +3,7 @@
 const express = require("express");
 const cors = require("cors");
 const indexRouter = require("./routes/cart")
+const router1 = require("./routes/product")
 
 //create an express appln
 const app = express();
@@ -10,6 +11,7 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 app.use('/api',indexRouter)
+app.use('/product',router1)
 //create a get route
 //app.use('/cart', cartRouter);
 app.get("/message", (req, res) => {

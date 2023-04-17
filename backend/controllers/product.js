@@ -13,11 +13,11 @@ const getAllProducts = async (req, res) => {
 
 
 const addProduct = async (req, res) => {
-  const { name, price, seller } = req.body;
+  const { product_id, name, price, seller } = req.body;
   try {
     const result = await db.query(
-      "INSERT INTO products(name, price, seller) VALUES ($1, $2, $3) RETURNING *",
-      [name, price, seller]
+      "INSERT INTO products(product_id,name, price, seller) VALUES ($1, $2, $3,$4) RETURNING *",
+      [product_id,name, price, seller]
     );
     res.send(result);
   } catch (err) {

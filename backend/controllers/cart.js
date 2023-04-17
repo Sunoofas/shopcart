@@ -17,6 +17,23 @@ const getCartItems = async (req, res) => {
 //cart add
 const addItem = async (req, res) => {
   const { product_id } = req.body;
+  console.log("req.body",req.body)
+  try {
+    const result = await db.query(
+      ` INSERT INTO cart_shop (product_id, quantity) VALUES ($1, 1) ON CONFLICT(product_id)
+      DO UPDATE set quantity =cart_shop.quantity +1 RETURNING *`,
+      [product_id]
+    );
+    console.log(result);
+
+    res.status(200).json(result);
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ error: "Server error" });
+  }
+};
+/*const addItem = async (req, res) => {
+  const { product_id } = req.body;
   console.log('TESTADD',product_id)
 
   try {
@@ -49,7 +66,7 @@ const addItem = async (req, res) => {
     console.error(err);
     res.status(500).json({ error: "Server error" });
   }
-};
+};*/
 
 //delete cart item
 const deleteItem = async (req, res) => {
